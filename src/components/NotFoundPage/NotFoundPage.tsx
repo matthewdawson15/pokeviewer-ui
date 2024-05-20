@@ -13,7 +13,7 @@ function NotFoundPage(): ReactElement {
         <Button onClick={(): void => location.assign("/")}>
           <>
             <Icon icon={faLongArrowLeft} />
-            <span>Return to PokViewer</span>
+            <span>Return to PokéViewer</span>
           </>
         </Button>
       </>
