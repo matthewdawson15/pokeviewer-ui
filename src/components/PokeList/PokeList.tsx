@@ -3,10 +3,10 @@ import { PokeTileDTO } from "../../types/pokemonDTO";
 import PokeTile from "../PokeTile/PokeTile";
 import Pagination from "../../blocks/Pagination/Pagination";
 import Modal from "../../blocks/Modal/Modal";
-import Button from "../../blocks/Button/Button";
+import PokeDetails from "../PokeDetails/PokeDetails";
 import "./PokeList.scss";
 
-type PokeListParam = {
+type PokeListProps = {
   pokeTileData: PokeTileDTO[];
 };
 
@@ -15,7 +15,7 @@ type PokeListParam = {
  *
  * @returns PokeList react element
  */
-function PokeList({ pokeTileData }: PokeListParam): ReactElement {
+function PokeList({ pokeTileData }: PokeListProps): ReactElement {
   const [selectedPokemon, setSelectedPokemon] = useState<PokeTileDTO | null>(
     null
   );
@@ -74,15 +74,14 @@ function PokeList({ pokeTileData }: PokeListParam): ReactElement {
         setPageSize={setPageSize}
         setCurrentPage={setCurrentPage}
       />
-      <Modal modalOpen={selectedPokemon !== null}>
-        <div>
-          <h1>{selectedPokemon?.name}</h1>
-          <p>Pokédex Number: {selectedPokemon?.id}</p>
-          <Button onClick={(): void => setSelectedPokemon(null)}>
-            <span>Close</span>
-          </Button>
-        </div>
-      </Modal>
+      {selectedPokemon !== null && (
+        <Modal modalOpen={selectedPokemon !== null}>
+          <PokeDetails
+            selectedPokemon={selectedPokemon}
+            setSelectedPokemon={(): void => setSelectedPokemon(null)}
+          />
+        </Modal>
+      )}
     </>
   );
 }

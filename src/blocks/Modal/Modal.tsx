@@ -47,7 +47,7 @@ function Modal({ modalOpen, children }: ModalProps): ReactElement {
 
   return createPortal(
     modalOpen && (
-      <div className={`modal-background ${!modalOpen && "display-none"}`}>
+      <div className={`modal-background ${!modalOpen ? "display-none" : ""}`}>
         <div className="modal-background__modal-content">{children}</div>
       </div>
     ),
