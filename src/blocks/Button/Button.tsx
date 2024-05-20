@@ -1,8 +1,8 @@
 import React, { ReactElement } from "react";
 import "./Button.scss";
-import { ParentProps } from "../../types/components";
+import { ParentClassProps } from "../../types/components";
 
-interface ButtonProps extends ParentProps {
+interface ButtonProps extends ParentClassProps {
   onClick: () => void;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;

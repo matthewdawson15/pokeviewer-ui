@@ -20,6 +20,7 @@ async function getRequest(url: string, params: Object = {}): Promise<Object> {
   })
     .then((response) => response.data)
     .catch((error) => {
+      // without time constraints, errors would be handled with react-toastify
       if (error.response && error.response.status) {
         console.error("error status: ", error.response.status);
       }
@@ -42,3 +43,14 @@ export async function getPokeTileData(
   return (await getRequest(url, params)) as PokeApiRes;
 }
 
+/**
+ * Function to retrieve detailed infor for one Pokemon
+ * using its unique ID
+ *
+ * @param id the unique Pokemon ID
+ * @returns promise containnig Pokemon object
+ */
+export async function getPokemonData(id: number): Promise<Pokemon> {
+  const url: string = POKE_API_BASE_URL + id;
+  return (await getRequest(url)) as Pokemon;
+}

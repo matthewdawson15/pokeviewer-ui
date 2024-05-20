@@ -4,6 +4,8 @@ export type OptionalClassProps = {
   className?: string;
 };
 
-export interface ParentProps extends OptionalClassProps {
+export type ParentProps = {
   children: ReactElement;
-}
+};
+
+export type ParentClassProps = OptionalClassProps & ParentProps;
