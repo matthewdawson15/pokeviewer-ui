@@ -1,0 +1,26 @@
+.footer {
+  margin: 2rem 1rem 0 1rem;
+
+  &__footer-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    display: flex;
+    justify-content: space-evenly;
+
+    &__logo {
+      max-width: 15rem;
+    }
+
+    &__links-wrapper {
+      .poke-ball-icon {
+        vertical-align: bottom;
+      }
+    }
+  }
+
+  &__logo {
+    max-width: 50%;
+  }
+}

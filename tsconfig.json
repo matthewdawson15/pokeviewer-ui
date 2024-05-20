@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    /*
+    "target": "es5",
+    "allowJs": true,
+    */
+    "outDir": "./built",
+    "target": "ES6",
+    // "jsx": "react",
+    "jsx": "preserve",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "removeComments": true,
+    "alwaysStrict": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "allowUnreachableCode": false
+  },
+  "include": ["./src/**/*"]
+}

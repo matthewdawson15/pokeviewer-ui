@@ -1,0 +1,14 @@
+@import "src/variables.scss";
+
+.header {
+  text-align: center;
+  &__logo {
+    max-width: 30rem;
+  }
+}
+
+@media (max-width: $sm) {
+  .header__logo {
+    max-width: 70%;
+  }
+}
