@@ -52,8 +52,6 @@ function Pagination({
     setCurrentPage(currentPage - 1);
   }
 
-  console.log(pageSize);
-
   return (
     <div className="pagination-items">
       <div className="pagination-items__page-numbers">
