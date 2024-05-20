@@ -3,6 +3,7 @@ import { PokeTileDTO } from "../../types/pokemonDTO";
 import PokeTile from "../PokeTile/PokeTile";
 import "./PokeList.scss";
 import Pagination from "../../blocks/Pagination/Pagination";
+import "./PokeList.scss";
 
 type PokeListParam = {
   pokeTileData: PokeTileDTO[];
@@ -14,7 +15,7 @@ type PokeListParam = {
  * @returns PokeList react element
  */
 function PokeList({ pokeTileData }: PokeListParam): ReactElement {
-  const [selectedPokemonURL, setSelectedPokemonURL] = useState<string | null>(
+  const [selectedPokemon, setSelectedPokemon] = useState<PokeTileDTO | null>(
     null
   );
 
@@ -46,9 +47,7 @@ function PokeList({ pokeTileData }: PokeListParam): ReactElement {
     }
   }
 
-  // search and sort by ID and Name, Asc + Desc, filter & sort store in local storage
-
-  // recalculate the number of pages required for the poke data whenever pageSize and pokeTileData are updated
+  // recalculate the number of pages required for the data whenever pageSize is updated
   useEffect(
     (): void => setPageNumbers(Math.ceil(pokeTileData.length / pageSize)),
     [pageSize]
@@ -61,7 +60,7 @@ function PokeList({ pokeTileData }: PokeListParam): ReactElement {
           (pokeTileDTO: PokeTileDTO): ReactElement => (
             <PokeTile
               key={pokeTileDTO.id}
-              onClick={(): void => setSelectedPokemonURL(pokeTileDTO.url)}
+              onClick={(): void => setSelectedPokemon(pokeTileDTO)}
               pokeTileDTO={pokeTileDTO}
             />
           )

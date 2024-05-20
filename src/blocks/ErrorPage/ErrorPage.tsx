@@ -1,5 +1,5 @@
 import React from "react";
-import { ParentProps } from "../../types/components";
+import { ParentProps } from "../../types/props";
 import "./ErrorPage.scss";
 
 const ErrorPage = ({ children }: ParentProps) => (

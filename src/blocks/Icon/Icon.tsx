@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
-import { OptionalClassProps } from "../../types/components";
+import { OptionalClassProps } from "../../types/props";
 import "./Icon.scss";
 
 interface IconProps extends OptionalClassProps {

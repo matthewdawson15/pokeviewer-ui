@@ -1,6 +1,6 @@
 import React from "react";
 import "./LoadingSpinner.scss";
-import { OptionalClassProps } from "../../types/components";
+import { OptionalClassProps } from "../../types/props";
 import Icon from "../Icon/Icon";
 import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
 

@@ -9,6 +9,7 @@ type PokeTileProps = {
 };
 
 /**
+ * Component to render a tile for a given Pokemon, with name, ID and image
  *
  * @param onClick callback function to trigger when tile is clicked
  * @param pokeTileDTO DTO of the Pokemon tile data (name, ID and further info URL)
@@ -34,34 +35,6 @@ function PokeTile({ onClick, pokeTileDTO }: PokeTileProps): ReactElement {
     return pokeImageBaseUrl + id + ".png";
   }
 
-  /**
-   * Function to capitalise a string
-   *
-   * @param string the string to capitalise
-   * @returns the capitalised string
-   */
-  function capitalise(string: string): string {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
-  /**
-   * Function to create a human readable version of
-   * a pokemon's name, including capitalisation and a more
-   * user friendly male/female designation
-   *
-   * @param name the original pokemon name string
-   * @returns the more user friendly name
-   */
-  function generatePokeName(name: string): string {
-    const userFriendlyName: string = name.endsWith("-m")
-      ? name.slice(0, -2) + " (Male)"
-      : name.endsWith("-f")
-      ? name.slice(0, -2) + " (Female)"
-      : name;
-
-    return capitalise(userFriendlyName);
-  }
-
   return (
     <button className="poke-tile" onClick={onClick}>
       {!imageLoaded && (
@@ -73,9 +46,7 @@ function PokeTile({ onClick, pokeTileDTO }: PokeTileProps): ReactElement {
         src={createPokeImageURL(pokeTileDTO.id)}
         onLoad={(): void => setImageLoaded(true)}
       />
-      <span className="poke-tile__name">
-        {generatePokeName(pokeTileDTO.name)}
-      </span>
+      <span className="poke-tile__name">{pokeTileDTO.name}</span>
       <span className="poke-tile__id">Pokédex Number: {pokeTileDTO.id}</span>
     </button>
   );

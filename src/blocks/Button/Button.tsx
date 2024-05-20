@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import "./Button.scss";
-import { ParentClassProps } from "../../types/components";
+import { ParentClassProps } from "../../types/props";
 
 interface ButtonProps extends ParentClassProps {
   onClick: () => void;

@@ -22,6 +22,34 @@ function PokeViewerPage(): ReactElement {
     useState<boolean>(false);
 
   /**
+   * Function to capitalise a string
+   *
+   * @param string the string to capitalise
+   * @returns the capitalised string
+   */
+  function capitalise(string: string): string {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  /**
+   * Function to create a human readable version of
+   * a pokemon's name, including capitalisation and a more
+   * user friendly male/female designation
+   *
+   * @param name the original pokemon name string
+   * @returns the more user friendly name
+   */
+  function generatePokeName(name: string): string {
+    const userFriendlyName: string = name.endsWith("-m")
+      ? name.slice(0, -2) + " (Male)"
+      : name.endsWith("-f")
+      ? name.slice(0, -2) + " (Female)"
+      : name;
+
+    return capitalise(userFriendlyName);
+  }
+
+  /**
    * Function to parse the Pokemon's unique ID from it's URL
    *
    * @param url the Pokemon's API url
@@ -55,8 +83,9 @@ function PokeViewerPage(): ReactElement {
           const pokeID: number = parsePokeID(pokeDetails.url);
 
           const pokeTileDTO: PokeTileDTO = {
-            ...pokeDetails,
+            name: generatePokeName(pokeDetails.name),
             id: pokeID,
+            url: pokeDetails.url,
           };
 
           return pokeTileDTO;
