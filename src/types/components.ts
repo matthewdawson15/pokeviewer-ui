@@ -1,3 +1,3 @@
-export type optionalClassProps = {
+export type OptionalClassProps = {
   className?: string;
 };

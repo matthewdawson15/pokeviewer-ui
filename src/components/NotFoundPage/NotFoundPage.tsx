@@ -5,16 +5,6 @@ import { Link } from "react-router-dom";
 import "./NotFoundPage.scss";
 
 function NotFoundPage(): ReactElement {
-  /******* */
-  // ===================================
-  // ===================================
-  // ===================================
-
-  // STYLE THIS LINK WITH BUTTON STYLING
-
-  // ===================================
-  // ===================================
-  /******* */
   return (
     <div className="error-page">
       <h1>Error 404 - Page not found</h1>

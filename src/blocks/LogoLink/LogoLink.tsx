@@ -1,9 +1,9 @@
 import React, { ReactElement } from "react";
 import { Link } from "react-router-dom";
 import title from "../../assets/title.png";
-import { optionalClassProps } from "../../types/components";
+import { OptionalClassProps } from "../../types/components";
 
-function LogoLink({ className = "" }: optionalClassProps): ReactElement {
+function LogoLink({ className = "" }: OptionalClassProps): ReactElement {
   return (
     <Link className="logo-link" to="/">
       <img
