@@ -1,7 +1,6 @@
 import React, { ReactElement, useState } from "react";
 import { PokeTileDTO } from "../../types/pokemonDTO";
 import "./PokeTile.scss";
-import { generatePokeName, createPokeImageURL } from "../../helpers/primitives";
 import LoadingSpinner from "../../blocks/LoadingSpinner/LoadingSpinner";
 
 type PokeTileProps = {
@@ -36,25 +35,6 @@ function PokeTile({ onClick, pokeTileDTO }: PokeTileProps): ReactElement {
   }
 
   /**
-   * Function to parse the Pokemon's unique ID from it's URL
-   *
-   * @param url the Pokemon's API url
-   * @returns the pokemon's unique ID
-   */
-  function parsePokeID(url: string): number {
-    const id: string | undefined = url
-      .split("/")
-      .filter((string: string) => string)
-      .pop();
-
-    if (id) {
-      return parseInt(id);
-    } else {
-      throw new Error("Cannot parse Pokemon ID from provided URL");
-    }
-  }
-
-  /**
    * Function to capitalise a string
    *
    * @param string the string to capitalise
@@ -85,7 +65,7 @@ function PokeTile({ onClick, pokeTileDTO }: PokeTileProps): ReactElement {
   return (
     <button className="poke-tile" onClick={onClick}>
       {!imageLoaded && (
-        <LoadingSpinner height={137.59} className="poke-tile__spinner" />
+        <LoadingSpinner height={142} className="poke-tile__spinner" />
       )}
       <img
         style={imageLoaded ? {} : { display: "none" }}
@@ -103,33 +83,3 @@ function PokeTile({ onClick, pokeTileDTO }: PokeTileProps): ReactElement {
 
 export default PokeTile;
 
-/*
-  function playCry(): void {
-    var audio = new Audio(
-      "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/1.ogg"
-    );
-    audio.play();
-    // play loading spinner and hide play button while playing
-    // have this in the modal
-
-    // https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/355.png
-    // https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png
-  }
-  */
-
-/* 
-
-  return (
-    <div className={className}>
-      <h1>Generation 1 Pokémon</h1>
-      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" />
-      <button onClick={playCry}>
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1.gif" />
-      </button>
-      <div className="test-div">
-        <p className="test-div__test-text">Bulbasaur</p>
-      </div>
-    </div>
-  );
-
-*/
