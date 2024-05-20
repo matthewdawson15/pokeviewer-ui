@@ -1,14 +1,13 @@
 import React, { ReactElement } from "react";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import LogoLink from "../LogoLink/LogoLink";
 import Icon from "../Icon/Icon";
 import { pokeBaseUrl } from "../../constants/urls";
-import PokeBall from "../../assets/poke-ball.svg";
 import "./Footer.scss";
 
 function Footer(): ReactElement {
   const gitHubRepo: string = "https://github.com/matthewdawson15/pokeviewer-ui";
-  const linkedIn: string = "www.linkedin.com/in/mwd15";
 
   return (
     <footer className="footer">
@@ -18,13 +17,22 @@ function Footer(): ReactElement {
         </li>
         <div className="footer__footer-list__links-wrapper">
           <li>
-            <a href={pokeBaseUrl} target="_blank" rel="noopener noreferrer">
-              <img className="icon poke-ball-icon" src={PokeBall} />
+            <a
+              className="footer__footer-list__links-wrapper__link"
+              href={pokeBaseUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Icon icon={faGlobe} />
               PokéAPI
             </a>
           </li>
           <li>
-            <a href={gitHubRepo} target="_blank">
+            <a
+              className="footer__footer-list__links-wrapper__link"
+              href={gitHubRepo}
+              target="_blank"
+            >
               <Icon icon={faGithub} />
               View Source Code
             </a>

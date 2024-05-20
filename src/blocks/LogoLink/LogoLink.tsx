@@ -6,11 +6,7 @@ import { OptionalClassProps } from "../../types/components";
 function LogoLink({ className = "" }: OptionalClassProps): ReactElement {
   return (
     <Link className="logo-link" to="/">
-      <img
-        className={className}
-        src={title}
-        alt="'PokeViewer' webpage title, font generated using www.textstudio.com"
-      />
+      <img className={className} src={title} alt="'PokeViewer' webpage title" />
     </Link>
   );
 }
