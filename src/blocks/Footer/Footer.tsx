@@ -3,7 +3,7 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import LogoLink from "../LogoLink/LogoLink";
 import Icon from "../Icon/Icon";
-import { pokeBaseUrl } from "../../constants/urls";
+import { POKE_BASE_URL } from "../../constants/urls";
 import "./Footer.scss";
 
 function Footer(): ReactElement {
@@ -19,7 +19,7 @@ function Footer(): ReactElement {
           <li>
             <a
               className="footer__footer-list__links-wrapper__link"
-              href={pokeBaseUrl}
+              href={POKE_BASE_URL}
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -1,13 +1,17 @@
-import { pokeImageBaseUrl } from "../constants/urls";
-
 /**
  * Helper function to generate the image URL for each pokemon tile
+ *
+ * (pokeImageBaseUrl would be moves to a constant file if used in
+ * multiple locations)
  *
  * @param id the pokemon's unique ID
  * @returns raw github URL string linking to the official artwork
  * image of the pokemon on the PokeAPI's repo
  */
 export function createPokeImageURL(id: number): string {
+  const pokeImageBaseUrl: string =
+    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/";
+
   return pokeImageBaseUrl + id + ".png";
 }
 

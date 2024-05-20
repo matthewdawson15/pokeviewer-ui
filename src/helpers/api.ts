@@ -1,6 +1,8 @@
 import axios from "axios";
-import { PokeAPIParams, PokeApiRes } from "../types/pokemonApi";
-import { pokeAPIBaseUrl } from "../constants/urls";
+import { PokeAPIParams, PokeApiRes, Pokemon } from "../types/pokemonApi";
+import { POKE_BASE_URL } from "../constants/urls";
+
+const POKE_API_BASE_URL: string = POKE_BASE_URL + "api/v2/pokemon/";
 
 /**
  * Default getRequest function for any URL
