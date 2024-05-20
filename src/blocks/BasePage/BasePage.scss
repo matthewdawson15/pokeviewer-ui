@@ -1,7 +1,7 @@
 @import "src/variables.scss";
 
 main {
-  margin: 0 20% 0 20%;
+  margin: 0 20rem;
 }
 
 .icon {
@@ -11,6 +11,12 @@ main {
 
 @media (max-width: $md) {
   main {
-    margin: 0;
+    margin: 0 5rem;
+  }
+}
+
+@media (max-width: $sm) {
+  main {
+    margin: 0 2rem;
   }
 }
