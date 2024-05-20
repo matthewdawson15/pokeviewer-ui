@@ -16,7 +16,7 @@ type PokeListProps = {
  * @returns PokeList react element
  */
 function PokeList({ pokeTileData }: PokeListProps): ReactElement {
-  const [selectedPokemon, setSelectedPokemon] = useState<PokeTileDTO | null>(
+  const [selectedPokemonID, setSelectedPokemonID] = useState<number | null>(
     null
   );
 
@@ -61,7 +61,7 @@ function PokeList({ pokeTileData }: PokeListProps): ReactElement {
           (pokeTileDTO: PokeTileDTO): ReactElement => (
             <PokeTile
               key={pokeTileDTO.id}
-              onClick={(): void => setSelectedPokemon(pokeTileDTO)}
+              onClick={(): void => setSelectedPokemonID(pokeTileDTO.id)}
               pokeTileDTO={pokeTileDTO}
             />
           )
@@ -74,11 +74,11 @@ function PokeList({ pokeTileData }: PokeListProps): ReactElement {
         setPageSize={setPageSize}
         setCurrentPage={setCurrentPage}
       />
-      {selectedPokemon !== null && (
-        <Modal modalOpen={selectedPokemon !== null}>
+      {selectedPokemonID !== null && (
+        <Modal modalOpen={selectedPokemonID !== null}>
           <PokeDetails
-            selectedPokemon={selectedPokemon}
-            setSelectedPokemon={(): void => setSelectedPokemon(null)}
+            id={selectedPokemonID}
+            setSelectedPokemon={(): void => setSelectedPokemonID(null)}
           />
         </Modal>
       )}
