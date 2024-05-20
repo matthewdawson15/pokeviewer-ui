@@ -18,9 +18,9 @@ type PokeDetailsProps = {
 };
 
 /**
- * Component to display a list of tile components showing basic information for each creature
+ * Component to retrieve and then display the detailed info for each Pokemon
  *
- * @returns PokeList react element
+ * @returns PokeDetails react element
  */
 function PokeDetails({
   id,
@@ -30,6 +30,13 @@ function PokeDetails({
 
   const [pokeDetailsLoading, setPokeDetailsLoading] = useState<boolean>(false);
 
+  /**
+   * Fetch the detailed info for the Pokemon, then parse it into a DTO
+   * object for further use within app
+   *
+   * Use of the DTO prevents any unwanted properties from being
+   * unintentionally let into the app.
+   */
   function fetchPokeDetails(): void {
     setPokeDetailsLoading(true);
 
