@@ -1,0 +1,33 @@
+@import "src/variables.scss";
+
+.display-none {
+  display: none;
+}
+
+.modal-background {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: $primary-shadow;
+
+  &__modal-content {
+    text-align: center;
+    background: $white;
+    padding: 3rem;
+    border-radius: 0.3rem;
+    min-width: 35rem;
+    margin-left: auto;
+    margin-right: auto;
+
+
+@media only screen and (max-width: $sm) {
+  .modal-background__modal-content {
+    min-width: 20rem;
+    max-width: 20rem;
+  }
+}

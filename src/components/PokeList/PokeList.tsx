@@ -1,8 +1,9 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import { PokeTileDTO } from "../../types/pokemonDTO";
 import PokeTile from "../PokeTile/PokeTile";
-import "./PokeList.scss";
 import Pagination from "../../blocks/Pagination/Pagination";
+import Modal from "../../blocks/Modal/Modal";
+import Button from "../../blocks/Button/Button";
 import "./PokeList.scss";
 
 type PokeListParam = {
@@ -73,6 +74,15 @@ function PokeList({ pokeTileData }: PokeListParam): ReactElement {
         setPageSize={setPageSize}
         setCurrentPage={setCurrentPage}
       />
+      <Modal modalOpen={selectedPokemon !== null}>
+        <div>
+          <h1>{selectedPokemon?.name}</h1>
+          <p>Pokédex Number: {selectedPokemon?.id}</p>
+          <Button onClick={(): void => setSelectedPokemon(null)}>
+            <span>Close</span>
+          </Button>
+        </div>
+      </Modal>
     </>
   );
 }
