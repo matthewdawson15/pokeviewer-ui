@@ -1,7 +1,7 @@
 import React from "react";
 import "./LoadingSpinner.scss";
 import { OptionalClassProps } from "../../types/components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Icon from "../Icon/Icon";
 import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
 
 interface LoadingSpinnerProps extends OptionalClassProps {
@@ -15,11 +15,15 @@ const LoadingSpinner = ({
   text = "",
 }: LoadingSpinnerProps) => (
   <div className="loading-spinner-container" style={{ height: `${height}px` }}>
-    <FontAwesomeIcon
+    <Icon
       className={`loading-spinner-container__loading-spinner ${className}`}
       icon={faSyncAlt}
     />
-    {text && <span className="loading-spinner-container__loading-spinner-text">{text}</span>}
+    {text && (
+      <span className="loading-spinner-container__loading-spinner-text">
+        {text}
+      </span>
+    )}
   </div>
 );
 

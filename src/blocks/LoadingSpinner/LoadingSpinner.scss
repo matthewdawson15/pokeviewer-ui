@@ -1,3 +1,5 @@
+@import "src/variables.scss";
+
 @keyframes rotation {
   from {
     transform: rotate(0deg);
@@ -16,7 +18,8 @@
 
   &__loading-spinner {
     animation: rotation 2s infinite linear;
-    font-size: 2rem;
+    height: 1.8rem;
+    color: $primary;
   }
 
   &__loading-spinner-text {

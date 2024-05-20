@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import LogoLink from "../LogoLink/LogoLink";
 import { pokeBaseUrl } from "../../constants/urls";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Icon from "../Icon/Icon";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import PokeBall from "../../assets/poke-ball.svg";
 import "./Footer.scss";
@@ -25,7 +25,7 @@ function Footer(): ReactElement {
           </li>
           <li>
             <a href={gitHubRepo} target="_blank">
-              <FontAwesomeIcon className="icon" icon={faGithub} />
+              <Icon icon={faGithub} />
               View Source Code
             </a>
           </li>
