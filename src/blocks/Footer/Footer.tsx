@@ -1,8 +1,8 @@
 import React, { ReactElement } from "react";
-import LogoLink from "../LogoLink/LogoLink";
-import { pokeBaseUrl } from "../../constants/urls";
-import Icon from "../Icon/Icon";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import LogoLink from "../LogoLink/LogoLink";
+import Icon from "../Icon/Icon";
+import { pokeBaseUrl } from "../../constants/urls";
 import PokeBall from "../../assets/poke-ball.svg";
 import "./Footer.scss";
 

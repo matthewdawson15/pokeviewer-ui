@@ -4,6 +4,12 @@ main {
   margin: 0 20rem;
 }
 
+@media (max-width: $lg) {
+  main {
+    margin: 0 10rem;
+  }
+}
+
 @media (max-width: $md) {
   main {
     margin: 0 5rem;
