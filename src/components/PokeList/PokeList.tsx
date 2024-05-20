@@ -1,71 +1,64 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import { getPokeTileData } from "../../helpers/api";
-import { parsePokeID } from "../../helpers/primitives";
-import {
-  NamedAPIResource,
-  PokeAPIParams,
-  PokeApiRes,
-} from "../../types/pokemonApi";
 import { PokeTileDTO } from "../../types/pokemonDTO";
-
-import LoadingSpinner from "../../blocks/LoadingSpinner/LoadingSpinner";
-import NoContent from "../../blocks/NoContent/NoContent";
 import PokeTile from "../PokeTile/PokeTile";
 import "./PokeList.scss";
+import Pagination from "../../blocks/Pagination/Pagination";
+
+type PokeListParam = {
+  pokeTileData: PokeTileDTO[];
+};
 
 /**
- * Component to fetch the Generation 1 Pokemon and display a list of tile components
- * showing basic information for each creature
+ * Component to display a list of tile components showing basic information for each creature
  *
  * @returns PokeList react element
  */
-function PokeList(): ReactElement {
-  const [pokeTileData, setPokeTileData] = useState<PokeTileDTO[] | null>(null);
-  const [pokeTileDataLoading, setPokeTileDataLoading] =
-    useState<boolean>(false);
+function PokeList({ pokeTileData }: PokeListParam): ReactElement {
   const [selectedPokemonURL, setSelectedPokemonURL] = useState<string | null>(
     null
   );
 
+  const [pageSize, setPageSize] = useState<number>(15);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [pageNumbers, setPageNumbers] = useState<number>(1);
+
   /**
-   * Function to fetch the Generation 1 Pokemon, parse the response's NamedAPIResource
-   * array into a PokeTileDTO array, then set in local state
+   * Function to filter the pokiTileData DTO array for
+   * pagination.
+   *
+   * @param pokeTileData the pokemon tile DTO to filter
+   * @returns the filtered tile DTO
    */
-  function fetchPokemon(): void {
-    const queryParams: PokeAPIParams = { offset: 0, limit: 151 };
+  function filterPokiTileData(pokeTileData: PokeTileDTO[]): PokeTileDTO[] {
+    /* if the number of pages required is greater than one, extract the items
+     to be displayed for that page ready to be displayed */
+    if (currentPage && pageNumbers > 1) {
+      const pageMax = currentPage * pageSize;
+      const pageMin = pageMax - pageSize;
 
-    setPokeTileDataLoading(true);
-
-    getPokeTileData(queryParams).then((res: PokeApiRes) => {
-      const pokeTiles: PokeTileDTO[] = res.results.map(
-        (pokeDetails: NamedAPIResource) => {
-          const pokeID: number = parsePokeID(pokeDetails.url);
-
-          const pokeTileDTO: PokeTileDTO = {
-            ...pokeDetails,
-            id: pokeID,
-          };
-
-          return pokeTileDTO;
-        }
+      const filteredPokiTileData: PokeTileDTO[] = pokeTileData.slice(
+        pageMin,
+        pageMax
       );
-
-      setPokeTileData(pokeTiles);
-      setPokeTileDataLoading(false);
-    });
+      return filteredPokiTileData;
+    } else {
+      return pokeTileData;
+    }
   }
 
-  // Fetch the Gen 1 Pokemon on component load
-  useEffect(() => fetchPokemon(), []);
+  // search and sort by ID and Name, Asc + Desc, filter & sort store in local storage
 
-  return !pokeTileData || pokeTileDataLoading ? (
-    <LoadingSpinner text="Loading Pokemon..." />
-  ) : pokeTileData?.length > 0 ? (
+  // recalculate the number of pages required for the poke data whenever pageSize and pokeTileData are updated
+  useEffect(
+    (): void => setPageNumbers(Math.ceil(pokeTileData.length / pageSize)),
+    [pageSize]
+  );
+
+  return (
     <>
-      <h1>Generation 1 Pokémon</h1>
       <div className="poke-list">
-        {pokeTileData.map(
-          (pokeTileDTO): ReactElement => (
+        {filterPokiTileData(pokeTileData).map(
+          (pokeTileDTO: PokeTileDTO): ReactElement => (
             <PokeTile
               key={pokeTileDTO.id}
               onClick={(): void => setSelectedPokemonURL(pokeTileDTO.url)}
@@ -74,9 +67,14 @@ function PokeList(): ReactElement {
           )
         )}
       </div>
+      <Pagination
+        pageSize={pageSize}
+        currentPage={currentPage}
+        pageNumbers={pageNumbers}
+        setPageSize={setPageSize}
+        setCurrentPage={setCurrentPage}
+      />
     </>
-  ) : (
-    <NoContent />
   );
 }
 

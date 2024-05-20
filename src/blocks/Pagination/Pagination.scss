@@ -1,0 +1,47 @@
+.pagination-items {
+  display: flex;
+  flex-direction: column;
+
+  &__page-numbers {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    &__contents {
+      padding-top: 0.5rem;
+    }
+
+    &__items-per-page {
+      display: flex;
+      flex-direction: row;
+
+      justify-content: center;
+
+      &__select {
+        padding: 0.25rem;
+        margin: 0 0 0 1rem;
+      }
+    }
+  }
+
+  &__pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
+
+/*
+.pagination button {
+  width: 60px;
+}
+
+
+.pagination button:disabled:hover {
+  background-color: #737373;
+  cursor: not-allowed;
+}
+
+*/

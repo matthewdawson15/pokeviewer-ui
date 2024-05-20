@@ -37,7 +37,7 @@ async function getRequest(url: string, params: Object = {}): Promise<Object> {
 export async function getPokeTileData(
   params: PokeAPIParams
 ): Promise<PokeApiRes> {
-  const url: string = pokeAPIBaseUrl;
+  const url: string = POKE_API_BASE_URL;
   // type assert the default getRequest response object to allow a PokeApiRes to be returned from it
   return (await getRequest(url, params)) as PokeApiRes;
 }
