@@ -8,7 +8,7 @@ type NoContentProps = {
 const NoContent = ({ keyword = "Pokémon" }: NoContentProps) => (
   <ErrorPage>
     <>
-      <h2>No {keyword} Available</h2>
+      <h1>No {keyword} Available</h1>
       <p>
         There may be an issue with the PokeAPI. Please refresh the page to try
         again.

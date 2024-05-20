@@ -58,27 +58,25 @@ function PokeList(): ReactElement {
   // Fetch the Gen 1 Pokemon on component load
   useEffect(() => fetchPokemon(), []);
 
-  return (
+  return !pokeTileData || pokeTileDataLoading ? (
+    <LoadingSpinner text="Loading Pokemon..." />
+  ) : pokeTileData?.length > 0 ? (
     <>
       <h1>Generation 1 Pokémon</h1>
-      {pokeTileDataLoading ? (
-        <LoadingSpinner text="Loading Pokemon..." />
-      ) : pokeTileData && pokeTileData.length > 0 ? (
-        <div className="poke-list">
-          {pokeTileData.map(
-            (pokeTileDTO): ReactElement => (
-              <PokeTile
-                key={pokeTileDTO.id}
-                onClick={(): void => setSelectedPokemonURL(pokeTileDTO.url)}
-                pokeTileDTO={pokeTileDTO}
-              />
-            )
-          )}
-        </div>
-      ) : (
-        <NoContent />
-      )}
+      <div className="poke-list">
+        {pokeTileData.map(
+          (pokeTileDTO): ReactElement => (
+            <PokeTile
+              key={pokeTileDTO.id}
+              onClick={(): void => setSelectedPokemonURL(pokeTileDTO.url)}
+              pokeTileDTO={pokeTileDTO}
+            />
+          )
+        )}
+      </div>
     </>
+  ) : (
+    <NoContent />
   );
 }
 
