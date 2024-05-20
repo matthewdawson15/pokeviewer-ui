@@ -1,14 +1,17 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import { getPokeTileData } from "../../helpers/api";
+import { parsePokeID } from "../../helpers/primitives";
 import {
   NamedAPIResource,
   PokeAPIParams,
   PokeApiRes,
 } from "../../types/pokemonApi";
 import { PokeTileDTO } from "../../types/pokemonDTO";
-import { parsePokeID } from "../../helpers/primitives";
+
 import LoadingSpinner from "../../blocks/LoadingSpinner/LoadingSpinner";
 import NoContent from "../../blocks/NoContent/NoContent";
+import PokeTile from "../PokeTile/PokeTile";
+import "./PokeList.scss";
 
 /**
  * Component to fetch the Generation 1 Pokemon and display a list of tile components
@@ -17,19 +20,18 @@ import NoContent from "../../blocks/NoContent/NoContent";
  * @returns PokeList react element
  */
 function PokeList(): ReactElement {
-  const [pokeTileData, setPokeTileData] = useState<PokeTileDTO[]>([]);
+  const [pokeTileData, setPokeTileData] = useState<PokeTileDTO[] | null>(null);
   const [pokeTileDataLoading, setPokeTileDataLoading] =
     useState<boolean>(false);
-
-  console.log(pokeTileData);
-  console.log(pokeTileDataLoading);
+  const [selectedPokemonURL, setSelectedPokemonURL] = useState<string | null>(
+    null
+  );
 
   /**
    * Function to fetch the Generation 1 Pokemon, parse the response's NamedAPIResource
    * array into a PokeTileDTO array, then set in local state
    */
   function fetchPokemon(): void {
-    // const queryParams: PokeAPIParams = { offset: 0, limit: 151 };
     const queryParams: PokeAPIParams = { offset: 0, limit: 151 };
 
     setPokeTileDataLoading(true);
@@ -53,15 +55,30 @@ function PokeList(): ReactElement {
     });
   }
 
-  // Fetch the Generation 1 pokemon on component first render
+  // Fetch the Gen 1 Pokemon on component load
   useEffect(() => fetchPokemon(), []);
 
-  return pokeTileDataLoading ? (
-    <LoadingSpinner text="Loading Pokemon..." />
-  ) : pokeTileData.length > 0 ? (
-    <p style={{ textAlign: "center" }}>Pokemon Count: {pokeTileData.length}</p>
-  ) : (
-    <NoContent />
+  return (
+    <>
+      <h1>Generation 1 Pokémon</h1>
+      {pokeTileDataLoading ? (
+        <LoadingSpinner text="Loading Pokemon..." />
+      ) : pokeTileData && pokeTileData.length > 0 ? (
+        <div className="poke-list">
+          {pokeTileData.map(
+            (pokeTileDTO): ReactElement => (
+              <PokeTile
+                key={pokeTileDTO.id}
+                onClick={(): void => setSelectedPokemonURL(pokeTileDTO.url)}
+                pokeTileDTO={pokeTileDTO}
+              />
+            )
+          )}
+        </div>
+      ) : (
+        <NoContent />
+      )}
+    </>
   );
 }
 
