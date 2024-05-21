@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import BasePage from "./blocks/BasePage/BasePage";
+import BasePage from "./blocks/pageComponents/BasePage/BasePage";
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 import PokeViewerPage from "./components/PokeViewerPage/PokeViewerPage";
 

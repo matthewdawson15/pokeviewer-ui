@@ -1,9 +1,9 @@
 import React, { ReactElement } from "react";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
-import LogoLink from "../LogoLink/LogoLink";
-import Icon from "../Icon/Icon";
-import { POKE_BASE_URL } from "../../constants/urls";
+import LogoLink from "../../LogoLink/LogoLink";
+import Icon from "../../Icon/Icon";
+import { POKE_BASE_URL } from "../../../constants/urls";
 import "./Footer.scss";
 
 function Footer(): ReactElement {

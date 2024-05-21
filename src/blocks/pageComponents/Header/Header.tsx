@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import LogoLink from "../LogoLink/LogoLink";
+import LogoLink from "../../LogoLink/LogoLink";
 import "./Header.scss";
 
 function Header(): ReactElement {
