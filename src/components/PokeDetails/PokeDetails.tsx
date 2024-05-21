@@ -2,9 +2,9 @@ import React, { ReactElement, useState } from "react";
 import Button from "../../blocks/Button/Button";
 import { generatePokeName } from "../../helpers/string";
 import { PokemonDTO } from "../../types/pokemonDTO";
-import "./PokeDetails.scss";
 import Icon from "../../blocks/Icon/Icon";
 import { faPlayCircle } from "@fortawesome/free-solid-svg-icons";
+import "./PokeDetails.scss";
 
 type PokeDetailsProps = {
   pokeDetails: PokemonDTO;

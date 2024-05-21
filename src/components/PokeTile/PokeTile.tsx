@@ -1,8 +1,8 @@
 import React, { ReactElement, useState } from "react";
 import { PokeTileDTO } from "../../types/pokemonDTO";
-import "./PokeTile.scss";
 import LoadingSpinner from "../../blocks/LoadingSpinner/LoadingSpinner";
 import { pokeImageBaseUrl } from "../../constants/urls";
+import "./PokeTile.scss";
 
 type PokeTileProps = {
   onClick: () => void;
@@ -20,14 +20,14 @@ function PokeTile({ onClick, pokeTileDTO }: PokeTileProps): ReactElement {
   const [imageLoaded, setImageLoaded] = useState<boolean>(false);
 
   /**
-   * Function to generate the animation URL for each pokemon tile
+   * Function to generate the image URL for each pokemon tile
    *
    * @param id the pokemon's unique ID
-   * @returns raw github URL string linking to the "showdown" gif
-   * of the pokemon within the PokeAPI's GitHub repo
+   * @returns raw github URL string linking to the official artwork
+   * image of the pokemon on the PokeAPI's repo
    */
-  function createPokeAnimationURL(id: number): string {
-    return pokeImageBaseUrl + id + ".gif";
+  function createPokeImageURL(id: number): string {
+    return pokeImageBaseUrl + id + ".png";
   }
 
   return (
@@ -37,8 +37,8 @@ function PokeTile({ onClick, pokeTileDTO }: PokeTileProps): ReactElement {
       )}
       <img
         style={imageLoaded ? {} : { display: "none" }}
-        className="poke-tile__animation"
-        src={createPokeAnimationURL(pokeTileDTO.id)}
+        className="poke-tile__image"
+        src={createPokeImageURL(pokeTileDTO.id)}
         onLoad={(): void => setImageLoaded(true)}
         alt={`Pokemon animated gif for ${pokeTileDTO.name} (#${pokeTileDTO.id}})`}
       />
