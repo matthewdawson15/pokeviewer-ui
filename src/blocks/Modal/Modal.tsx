@@ -45,7 +45,6 @@ function Modal({ modalOpen, closeModal, children }: ModalProps): ReactElement {
    * returned to it once the modal is closed, without the page jumping to
    * the top
    */
-
   useEffect((): (() => void) => {
     if (modalOpen) {
       document.body.style.overflow = "hidden";

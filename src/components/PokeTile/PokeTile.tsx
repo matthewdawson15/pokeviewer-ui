@@ -53,4 +53,3 @@ function PokeTile({ onClick, pokeTileDTO }: PokeTileProps): ReactElement {
 }
 
 export default PokeTile;
-
