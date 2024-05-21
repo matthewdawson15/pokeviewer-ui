@@ -93,7 +93,7 @@ function PokeDetails({
     <LoadingSpinner text="Loading Pokemon Details..." />
   ) : pokeDetails ? (
     <div>
-      <h1>{pokeDetails?.name}</h1>
+      <h1>{generatePokeName(pokeDetails?.name)}</h1>
       <p>Pokédex Number: {pokeDetails?.id}</p>
       <Button onClick={setSelectedPokemon}>
         <span>Close</span>
