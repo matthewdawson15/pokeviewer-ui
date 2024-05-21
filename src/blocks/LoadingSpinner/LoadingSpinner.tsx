@@ -11,10 +11,13 @@ interface LoadingSpinnerProps extends OptionalClassProps {
 
 const LoadingSpinner = ({
   className = "",
-  height = 600,
+  height,
   text = "",
 }: LoadingSpinnerProps) => (
-  <div className="loading-spinner-container" style={{ height: `${height}px` }}>
+  <div
+    className="loading-spinner-container"
+    style={height ? { height: `${height}px` } : {}}
+  >
     <Icon
       className={`loading-spinner-container__loading-spinner ${className}`}
       icon={faSyncAlt}

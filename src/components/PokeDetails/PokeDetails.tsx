@@ -1,7 +1,9 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import Button from "../../blocks/Button/Button";
+import LoadingSpinner from "../../blocks/LoadingSpinner/LoadingSpinner";
+import NoContent from "../../blocks/NoContent/NoContent";
 import { getPokemonData } from "../../helpers/api";
-import "./PokeDetails.scss";
+import { generatePokeName } from "../../helpers/string";
 import { Ability, Move, Pokemon, Type } from "../../types/pokemonApi";
 import {
   AbilityDTO,
@@ -11,6 +13,7 @@ import {
   MoveDTO,
   PokemonDTO,
 } from "../../types/pokemonDTO";
+import "./PokeDetails.scss";
 
 type PokeDetailsProps = {
   id: number;
@@ -86,7 +89,9 @@ function PokeDetails({
 
   useEffect((): void => fetchPokeDetails(), []);
 
-  return (
+  return !pokeDetails || pokeDetailsLoading ? (
+    <LoadingSpinner text="Loading Pokemon Details..." />
+  ) : pokeDetails ? (
     <div>
       <h1>{pokeDetails?.name}</h1>
       <p>Pokédex Number: {pokeDetails?.id}</p>
@@ -94,6 +99,8 @@ function PokeDetails({
         <span>Close</span>
       </Button>
     </div>
+  ) : (
+    <NoContent keyword="Pokémon Details" />
   );
 }
 
