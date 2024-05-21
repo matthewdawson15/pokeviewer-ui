@@ -34,10 +34,7 @@ function PokeDetails({
 
   return (
     <div className="poke-details">
-      <img
-        className="poke-details__image"
-        src={pokeDetails.media.images.artwork}
-      />
+      <img className="poke-details__image" src={pokeDetails.media.artwork} />
       <h1>
         {generatePokeName(pokeDetails.name)}
         <button
@@ -72,36 +69,3 @@ function PokeDetails({
 }
 
 export default PokeDetails;
-
-/*
-
-/*
-  function playCry(): void {
-    var audio = new Audio(
-      "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/1.ogg"
-    );
-    audio.play();
-    // play loading spinner and hide play button while playing
-    // have this in the modal
-
-    // https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/355.png
-    // https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png
-  }
-  */
-
-/* 
-
-  return (
-    <div className={className}>
-      <h1>Generation 1 Pokémon</h1>
-      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" />
-      <button onClick={playCry}>
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1.gif" />
-      </button>
-      <div className="test-div">
-        <p className="test-div__test-text">Bulbasaur</p>
-      </div>
-    </div>
-  );
-
-*/
