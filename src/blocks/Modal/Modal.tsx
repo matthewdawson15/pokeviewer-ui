@@ -1,10 +1,11 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { ParentProps } from "../../types/props";
 import "./Modal.scss";
 
 interface ModalProps extends ParentProps {
   modalOpen: boolean;
+  closeModal: () => void;
 }
 
 /**
@@ -18,8 +19,22 @@ interface ModalProps extends ParentProps {
  *
 
  */
-function Modal({ modalOpen, children }: ModalProps): ReactElement {
-  const [scrollPosition, setScrollPosition] = useState<number>(0.0);
+function Modal({ modalOpen, closeModal, children }: ModalProps): ReactElement {
+  /**
+   * Function to allow the user to scroll again when modal is about to be closed
+   */
+  function restoreScroll(): void {
+    document.body.style.overflow = "auto";
+    document.body.style.height = "auto";
+  }
+
+  /**
+   * Function to close the modal when an element has been clicked
+   */
+  function closeFromClick(): void {
+    restoreScroll();
+    closeModal();
+  }
 
   /**
    * window.scrollY is used to prevent the page from scrolling when the modal
@@ -30,25 +45,32 @@ function Modal({ modalOpen, children }: ModalProps): ReactElement {
    * returned to it once the modal is closed, without the page jumping to
    * the top
    */
-  useEffect((): void => {
+
+  useEffect((): (() => void) => {
     if (modalOpen) {
-      setScrollPosition(window.scrollY);
-      document.body.style.top = `-${window.scrollY}px`;
-      document.body.style.position = "fixed";
-      document.body.style.width = "100%";
+      document.body.style.overflow = "hidden";
+      document.body.style.height = "100%";
     } else {
-      document.body.style.top = "";
-      document.body.style.position = "";
-      document.body.style.width = "";
-      window.scrollTo(0, scrollPosition);
-      setScrollPosition(0.0);
+      restoreScroll();
     }
+
+    return () => restoreScroll();
   }, [modalOpen]);
 
   return createPortal(
     modalOpen && (
-      <div className={`modal-background ${!modalOpen ? "display-none" : ""}`}>
-        <div className="modal-background__modal-content">{children}</div>
+      <div
+        // close the modal when the modal background is clicked
+        onClick={closeFromClick}
+        className={`modal-background ${!modalOpen ? "display-none" : ""}`}
+      >
+        <div
+          // Prevent closing the modal when clicking on modal content
+          onClick={(e: React.MouseEvent) => e.stopPropagation()}
+          className="modal-background__modal-content"
+        >
+          {children}
+        </div>
       </div>
     ),
     document.body

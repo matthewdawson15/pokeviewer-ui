@@ -75,7 +75,10 @@ function PokeList({ pokeTileData }: PokeListProps): ReactElement {
         setCurrentPage={setCurrentPage}
       />
       {selectedPokemonID !== null && (
-        <Modal modalOpen={selectedPokemonID !== null}>
+        <Modal
+          modalOpen={selectedPokemonID !== null}
+          closeModal={(): void => setSelectedPokemonID(null)}
+        >
           <PokeDetails
             id={selectedPokemonID}
             setSelectedPokemon={(): void => setSelectedPokemonID(null)}
