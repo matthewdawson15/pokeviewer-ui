@@ -34,7 +34,11 @@ function PokeDetails({
 
   return (
     <div className="poke-details">
-      <img className="poke-details__image" src={pokeDetails.media.artwork} />
+      <img
+        className="poke-details__image"
+        src={pokeDetails.media.artwork}
+        alt={`official artwork for ${pokeDetails.name}(#${pokeDetails.id})`}
+      />
       <h1>
         {generatePokeName(pokeDetails.name)}
         <button
@@ -48,6 +52,7 @@ function PokeDetails({
           />
         </button>
       </h1>
+
       <p>
         <span className="poke-details__property-name">Pokédex Number: </span>
         {pokeDetails.id}

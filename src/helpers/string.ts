@@ -4,7 +4,7 @@
  * @param string the string to capitalise
  * @returns the capitalised string
  */
-function capitalise(string: string): string {
+export function capitalise(string: string): string {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
@@ -18,9 +18,9 @@ function capitalise(string: string): string {
  */
 export function generatePokeName(name: string): string {
   const userFriendlyName: string = name.endsWith("-m")
-    ? name.slice(0, -2) + " (Male)"
+    ? name.slice(0, -2) + " \u{2642}"
     : name.endsWith("-f")
-    ? name.slice(0, -2) + " (Female)"
+    ? name.slice(0, -2) + " \u{2640}"
     : name;
 
   return capitalise(userFriendlyName);

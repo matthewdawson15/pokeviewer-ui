@@ -2,6 +2,7 @@ import React, { ReactElement, useState } from "react";
 import { PokeTileDTO } from "../../types/pokemonDTO";
 import "./PokeTile.scss";
 import LoadingSpinner from "../../blocks/LoadingSpinner/LoadingSpinner";
+import { pokeImageBaseUrl } from "../../constants/urls";
 
 type PokeTileProps = {
   onClick: () => void;
@@ -19,20 +20,14 @@ function PokeTile({ onClick, pokeTileDTO }: PokeTileProps): ReactElement {
   const [imageLoaded, setImageLoaded] = useState<boolean>(false);
 
   /**
-   * Function to generate the image URL for each pokemon tile
-   *
-   * (pokeImageBaseUrl would be moves to a constant file if used in
-   * multiple locations)
+   * Function to generate the animation URL for each pokemon tile
    *
    * @param id the pokemon's unique ID
-   * @returns raw github URL string linking to the official artwork
-   * image of the pokemon on the PokeAPI's repo
+   * @returns raw github URL string linking to the "showdown" gif
+   * of the pokemon within the PokeAPI's GitHub repo
    */
-  function createPokeImageURL(id: number): string {
-    const pokeImageBaseUrl: string =
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/";
-
-    return pokeImageBaseUrl + id + ".png";
+  function createPokeAnimationURL(id: number): string {
+    return pokeImageBaseUrl + id + ".gif";
   }
 
   return (
@@ -42,12 +37,14 @@ function PokeTile({ onClick, pokeTileDTO }: PokeTileProps): ReactElement {
       )}
       <img
         style={imageLoaded ? {} : { display: "none" }}
-        className="poke-tile__image"
-        src={createPokeImageURL(pokeTileDTO.id)}
+        className="poke-tile__animation"
+        src={createPokeAnimationURL(pokeTileDTO.id)}
         onLoad={(): void => setImageLoaded(true)}
+        alt={`Pokemon animated gif for ${pokeTileDTO.name} (#${pokeTileDTO.id}})`}
       />
-      <span className="poke-tile__name">{pokeTileDTO.name}</span>
-      <span className="poke-tile__id">Pokédex Number: {pokeTileDTO.id}</span>
+      <span className="poke-tile__name">
+        {pokeTileDTO.name} (#{pokeTileDTO.id})
+      </span>
     </button>
   );
 }
