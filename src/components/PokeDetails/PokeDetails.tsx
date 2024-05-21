@@ -1,107 +1,107 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import Button from "../../blocks/Button/Button";
-import LoadingSpinner from "../../blocks/LoadingSpinner/LoadingSpinner";
-import NoContent from "../../blocks/NoContent/NoContent";
-import { getPokemonData } from "../../helpers/api";
 import { generatePokeName } from "../../helpers/string";
-import { Ability, Move, Pokemon, Type } from "../../types/pokemonApi";
-import {
-  AbilityDTO,
-  CharacteristicsDTO,
-  ImagesDTO,
-  MediaDTO,
-  MoveDTO,
-  PokemonDTO,
-} from "../../types/pokemonDTO";
+import { PokemonDTO } from "../../types/pokemonDTO";
 import "./PokeDetails.scss";
+import Icon from "../../blocks/Icon/Icon";
+import { faPlayCircle } from "@fortawesome/free-solid-svg-icons";
 
 type PokeDetailsProps = {
-  id: number;
+  pokeDetails: PokemonDTO;
   setSelectedPokemon: () => void;
 };
 
 /**
- * Component to retrieve and then display the detailed info for each Pokemon
+ * Component to display the detailed info for each Pokemon
  *
  * @returns PokeDetails react element
  */
 function PokeDetails({
-  id,
+  pokeDetails,
   setSelectedPokemon,
 }: PokeDetailsProps): ReactElement {
-  const [pokeDetails, setPokeDetails] = useState<PokemonDTO | null>(null);
-
-  const [pokeDetailsLoading, setPokeDetailsLoading] = useState<boolean>(false);
+  const [cryPlaying, setCryPlaying] = useState<boolean>(false);
 
   /**
-   * Fetch the detailed info for the Pokemon, then parse it into a DTO
-   * object for further use within app
-   *
-   * Use of the DTO prevents any unwanted properties from being
-   * unintentionally let into the app.
+   * Function to play the pokemon's cry and prevent it playing further until it ends
    */
-  function fetchPokeDetails(): void {
-    setPokeDetailsLoading(true);
-
-    getPokemonData(id).then((pokemon: Pokemon) => {
-      const characteristics: CharacteristicsDTO = {
-        abilities: pokemon.abilities.map(
-          (pokeAbility: Ability): AbilityDTO => ({
-            ability: pokeAbility.ability.name,
-            isHidden: pokeAbility.is_hidden,
-          })
-        ),
-        moves: pokemon.moves.map(
-          (pokeMove: Move): MoveDTO => ({
-            move: pokeMove.move.name,
-            levelLearned: pokeMove.version_group_details[0].level_learned_at,
-          })
-        ),
-        types: pokemon.types.map(
-          (pokeType: Type): string => pokeType.type.name
-        ),
-      };
-
-      const imagesDTO: ImagesDTO = {
-        artwork: pokemon.sprites.other["official-artwork"].front_default,
-        animation: pokemon.sprites.other.showdown.front_default,
-      };
-
-      const media: MediaDTO = {
-        images: imagesDTO,
-        cry: pokemon.cries.latest,
-      };
-
-      const pokemonDTO: PokemonDTO = {
-        id: pokemon.id,
-        name: pokemon.name,
-        height: pokemon.height,
-        weight: pokemon.weight,
-        species: pokemon.species.name,
-        characteristics: characteristics,
-        media: media,
-      };
-
-      setPokeDetails(pokemonDTO);
-      setPokeDetailsLoading(false);
-    });
+  function playCry(): void {
+    setCryPlaying(true);
+    const audio: HTMLAudioElement = new Audio(pokeDetails.media.cry);
+    audio.play();
+    audio.onended = (): void => setCryPlaying(false);
   }
 
-  useEffect((): void => fetchPokeDetails(), []);
+  return (
+    <div className="poke-details">
+      <img
+        className="poke-details__image"
+        src={pokeDetails.media.images.artwork}
+      />
+      <h1>
+        {generatePokeName(pokeDetails.name)}
+        <button
+          className="poke-details__play-button"
+          onClick={playCry}
+          disabled={cryPlaying}
+        >
+          <Icon
+            className="poke-details__play-button__icon"
+            icon={faPlayCircle}
+          />
+        </button>
+      </h1>
+      <p>
+        <span className="poke-details__property-name">Pokédex Number: </span>
+        {pokeDetails.id}
+      </p>
+      <p>
+        <span className="poke-details__property-name">Height: </span>
+        {pokeDetails.height}
+      </p>
+      <p>
+        <span className="poke-details__property-name">Weight: </span>
+        {pokeDetails.weight}
+      </p>
 
-  return !pokeDetails || pokeDetailsLoading ? (
-    <LoadingSpinner text="Loading Pokemon Details..." />
-  ) : pokeDetails ? (
-    <div>
-      <h1>{generatePokeName(pokeDetails?.name)}</h1>
-      <p>Pokédex Number: {pokeDetails?.id}</p>
       <Button onClick={setSelectedPokemon}>
         <span>Close</span>
       </Button>
     </div>
-  ) : (
-    <NoContent keyword="Pokémon Details" />
   );
 }
 
 export default PokeDetails;
+
+/*
+
+/*
+  function playCry(): void {
+    var audio = new Audio(
+      "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/1.ogg"
+    );
+    audio.play();
+    // play loading spinner and hide play button while playing
+    // have this in the modal
+
+    // https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/355.png
+    // https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png
+  }
+  */
+
+/* 
+
+  return (
+    <div className={className}>
+      <h1>Generation 1 Pokémon</h1>
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" />
+      <button onClick={playCry}>
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1.gif" />
+      </button>
+      <div className="test-div">
+        <p className="test-div__test-text">Bulbasaur</p>
+      </div>
+    </div>
+  );
+
+*/

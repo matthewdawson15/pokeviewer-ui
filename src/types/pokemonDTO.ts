@@ -16,13 +16,8 @@ export type CharacteristicsDTO = {
   types: string[];
 };
 
-export type ImagesDTO = {
-  artwork: string;
-  animation: string;
-};
-
 export type MediaDTO = {
-  images: ImagesDTO;
+  artwork: string;
   cry: string;
 };
 
@@ -38,7 +33,6 @@ export type PokemonDTO = {
   name: string;
   height: number;
   weight: number;
-  species: string;
   characteristics: CharacteristicsDTO;
   media: MediaDTO;
 };

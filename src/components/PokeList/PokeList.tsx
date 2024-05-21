@@ -3,7 +3,7 @@ import { PokeTileDTO } from "../../types/pokemonDTO";
 import PokeTile from "../PokeTile/PokeTile";
 import Pagination from "../../blocks/Pagination/Pagination";
 import Modal from "../../blocks/Modal/Modal";
-import PokeDetails from "../PokeDetails/PokeDetails";
+import PokeDetailsWrapper from "../PokeDetailsWrapper/PokeDetailsWrapper";
 import "./PokeList.scss";
 
 type PokeListProps = {
@@ -79,7 +79,7 @@ function PokeList({ pokeTileData }: PokeListProps): ReactElement {
           modalOpen={selectedPokemonID !== null}
           closeModal={(): void => setSelectedPokemonID(null)}
         >
-          <PokeDetails
+          <PokeDetailsWrapper
             id={selectedPokemonID}
             setSelectedPokemon={(): void => setSelectedPokemonID(null)}
           />

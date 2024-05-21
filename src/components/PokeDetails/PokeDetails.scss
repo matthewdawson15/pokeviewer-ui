@@ -1,0 +1,28 @@
+@import "src/variables.scss";
+
+.poke-details {
+  &__play-button {
+    border: 0;
+    background: none;
+    margin-left: 0.5rem;
+    cursor: pointer;
+
+    &__icon {
+      margin: 0;
+      height: 1.7rem;
+      color: $grey;
+
+      &:hover {
+        color: $primary;
+      }
+    }
+  }
+
+  &__image {
+    max-height: 15rem;
+  }
+
+  &__property-name {
+    font-weight: $font-medium;
+  }
+}
