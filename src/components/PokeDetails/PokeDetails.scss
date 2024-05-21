@@ -3,23 +3,24 @@
 .poke-details {
   &__play-button {
     border: 0;
+    border-radius: 15px;
+    padding: 0;
     background: none;
-    margin-left: 0.5rem;
+    transition: all 0.2s ease-in-out;
     cursor: pointer;
 
-    &__icon {
-      margin: 0;
-      height: 1.7rem;
-      color: $grey;
-
-      &:hover {
-        color: $primary;
-      }
+    &__image {
+      max-height: 15rem;
     }
-  }
 
-  &__image {
-    max-height: 15rem;
+    &:hover {
+      background-color: $primary-shadow;
+      transition: all 0.2s ease-in-out;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
   }
 
   &__property-name {
