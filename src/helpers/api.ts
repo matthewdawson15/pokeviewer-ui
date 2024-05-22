@@ -20,7 +20,7 @@ async function getRequest(url: string, params: Object = {}): Promise<Object> {
   })
     .then((response) => response.data)
     .catch((error) => {
-      // without time constraints, errors would be handled with react-toastify
+      // without time constraints, errors would be handled and displayed with react-toastify
       if (error.response && error.response.status) {
         console.error("error status: ", error.response.status);
       }
