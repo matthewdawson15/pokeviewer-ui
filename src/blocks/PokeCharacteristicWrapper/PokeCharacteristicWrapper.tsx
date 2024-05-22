@@ -8,6 +8,10 @@ interface PokeCharacteristicWrapperProps extends ParentProps {
   characteristicName: string;
 }
 
+/**
+ * Block component to hide a pokemon's characteristic element behind
+ * an expandable dropdown button
+ */
 function PokeCharacteristicWrapper({
   characteristicName,
   children,

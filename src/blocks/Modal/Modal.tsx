@@ -9,15 +9,13 @@ interface ModalProps extends ParentProps {
 }
 
 /**
- * Modal class component
+ * Modal block component
  *
  * Generates a modal that will appear as a popup and then passes in
  * a supplied child component to display to the user
  *
  * The modal is created using createPortal and added inside the
  * document.body.
- *
-
  */
 function Modal({ modalOpen, closeModal, children }: ModalProps): ReactElement {
   /**
@@ -29,13 +27,7 @@ function Modal({ modalOpen, closeModal, children }: ModalProps): ReactElement {
   }
 
   /**
-   * window.scrollY is used to prevent the page from scrolling when the modal
-   * is visible
-   *
-   * The scroll-bar is removed by setting the position of the body
-   * to fixed, and the current user's position is saved so that they can be
-   * returned to it once the modal is closed, without the page jumping to
-   * the top
+   * remove the scroll bar while the modal is open, and restore it when it is unmounted
    */
   useEffect((): (() => void) => {
     if (modalOpen) {

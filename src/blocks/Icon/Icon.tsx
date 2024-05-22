@@ -12,7 +12,6 @@ interface IconProps extends OptionalClassProps {
  * Component to apply default and optional classname to fontawesome
  * icon and render the icon corresponding to the supplied IconDefinition
  *
- * @param icon the IconDefinition of the fontawesome icon to render
  * @returns Icon react element
  */
 function Icon({ className, icon }: IconProps): ReactElement {

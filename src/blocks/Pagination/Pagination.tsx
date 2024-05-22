@@ -17,7 +17,7 @@ type PaginationProps = {
 };
 
 /**
- * Pagination component to add page number functionality to a page.
+ * Pagination block component to add page number functionality to a page.
  *
  * The number of items per page (pageSize), the current page, and the number of pages
  * are supplied to the component to allow for dynamic generation.

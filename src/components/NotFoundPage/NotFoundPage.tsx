@@ -3,6 +3,9 @@ import { faLongArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import Button from "../../blocks/Button/Button";
 import Icon from "../../blocks/Icon/Icon";
 
+/**
+ * Not Found Page component with return to home button
+ */
 function NotFoundPage(): ReactElement {
   return (
     <div className="centred">

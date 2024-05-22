@@ -8,6 +8,9 @@ interface ButtonProps extends ParentClassProps {
   disabled?: boolean;
 }
 
+/**
+ * Block component to render a button with optional params
+ */
 function Button({
   onClick,
   className = "",

@@ -4,6 +4,9 @@ type NoContentProps = {
   keyword?: string;
 };
 
+/**
+ * Block component to render a No Content message with optional dynamic keyword
+ */
 const NoContent = ({ keyword = "Pokémon" }: NoContentProps) => (
   <div className="centred">
     <h1>No {keyword} Available</h1>

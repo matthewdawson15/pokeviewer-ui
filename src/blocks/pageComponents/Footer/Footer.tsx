@@ -6,6 +6,9 @@ import Icon from "../../Icon/Icon";
 import { POKE_BASE_URL } from "../../../constants/urls";
 import "./Footer.scss";
 
+/**
+ * Footer block component rendering a logo link and links to the poke api and the app's source code
+ */
 function Footer(): ReactElement {
   const gitHubRepo: string = "https://github.com/matthewdawson15/pokeviewer-ui";
 

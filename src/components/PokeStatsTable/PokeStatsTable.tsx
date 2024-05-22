@@ -6,6 +6,9 @@ interface PokeStatsTableProps {
   pokeStats: StatDTO[];
 }
 
+/**
+ * Table rendering the Pokemon's stats
+ */
 function PokeStatsTable({ pokeStats }: PokeStatsTableProps): ReactElement {
   return (
     <>

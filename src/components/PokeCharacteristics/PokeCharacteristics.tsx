@@ -6,6 +6,9 @@ interface PokeCharacteristicsProps {
   characteristics: CharacteristicsDTO;
 }
 
+/**
+ * Component to render the Pokemon's characteristics, including the table of stats
+ */
 function PokeCharacteristics({
   characteristics,
 }: PokeCharacteristicsProps): ReactElement {

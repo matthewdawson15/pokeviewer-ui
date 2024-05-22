@@ -9,6 +9,10 @@ interface LoadingSpinnerProps extends OptionalClassProps {
   text?: string;
 }
 
+/**
+ * Block component to render a spinning loading spinner with
+ * optional text and classname
+ */
 const LoadingSpinner = ({
   className = "",
   height,
