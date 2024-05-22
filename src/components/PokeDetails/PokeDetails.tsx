@@ -37,6 +37,7 @@ function PokeDetails({
         className="poke-details__play-button"
         onClick={playCry}
         disabled={cryPlaying}
+        autoFocus
       >
         <img
           className="poke-details__play-button__image"
