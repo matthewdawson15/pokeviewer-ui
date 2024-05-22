@@ -1,12 +1,7 @@
 {
   "compilerOptions": {
-    /*
-    "target": "es5",
-    "allowJs": true,
-    */
     "outDir": "./built",
     "target": "ES6",
-    // "jsx": "react",
     "jsx": "preserve",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
