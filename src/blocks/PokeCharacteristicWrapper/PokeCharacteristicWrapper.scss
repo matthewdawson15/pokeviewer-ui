@@ -1,0 +1,18 @@
+.characteristic {
+  margin-bottom: 1rem;
+
+  &__title {
+    display: inline-block;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+
+  &__dropdown-button {
+    border: none;
+    background: none;
+    margin-left: 0.25rem;
+    &__icon {
+      margin: 0;
+    }
+  }
+}
