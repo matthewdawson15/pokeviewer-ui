@@ -1,0 +1,30 @@
+@import "src/variables.scss";
+
+.poke-stats-table {
+  border-collapse: collapse;
+  width: 100%;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  text-align: right;
+
+  th {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color: $primary;
+    color: $white;
+  }
+
+  td,
+  th {
+    border: 1px solid $table-borders;
+    padding: 8px;
+
+    &:first-child {
+      text-align: left;
+    }
+  }
+
+  tr:nth-child(even) {
+    background-color: $primary-shadow;
+  }
+}
