@@ -2,13 +2,14 @@ import React, { ReactElement, useEffect, useState } from "react";
 import LoadingSpinner from "../../blocks/LoadingSpinner/LoadingSpinner";
 import NoContent from "../../blocks/NoContent/NoContent";
 import { getPokemonData } from "../../helpers/api";
-import { Ability, Move, Pokemon, Type } from "../../types/pokemonApi";
+import { formatString } from "../../helpers/string";
+import { Ability, Pokemon, Stat, Type } from "../../types/pokemonApi";
 import {
   AbilityDTO,
   CharacteristicsDTO,
   MediaDTO,
-  MoveDTO,
   PokemonDTO,
+  StatDTO,
 } from "../../types/pokemonDTO";
 import PokeDetails from "../PokeDetails/PokeDetails";
 
@@ -42,20 +43,21 @@ function PokeDetailsWrapper({
 
     getPokemonData(id).then((pokemon: Pokemon) => {
       const characteristics: CharacteristicsDTO = {
+        stats: pokemon.stats.map(
+          (statType: Stat): StatDTO => ({
+            name: formatString(statType.stat.name),
+            baseStat: statType.base_stat,
+            effort: statType.effort,
+          })
+        ),
         abilities: pokemon.abilities.map(
           (pokeAbility: Ability): AbilityDTO => ({
-            ability: pokeAbility.ability.name,
+            ability: formatString(pokeAbility.ability.name),
             isHidden: pokeAbility.is_hidden,
           })
         ),
-        moves: pokemon.moves.map(
-          (pokeMove: Move): MoveDTO => ({
-            move: pokeMove.move.name,
-            levelLearned: pokeMove.version_group_details[0].level_learned_at,
-          })
-        ),
-        types: pokemon.types.map(
-          (pokeType: Type): string => pokeType.type.name
+        types: pokemon.types.map((pokeType: Type): string =>
+          formatString(pokeType.type.name)
         ),
       };
 

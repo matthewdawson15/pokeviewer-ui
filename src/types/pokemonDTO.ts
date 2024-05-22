@@ -5,14 +5,15 @@ export type AbilityDTO = {
   isHidden: boolean;
 };
 
-export type MoveDTO = {
-  move: string;
-  levelLearned: number;
+export type StatDTO = {
+  name: string;
+  baseStat: number;
+  effort: number;
 };
 
 export type CharacteristicsDTO = {
+  stats: StatDTO[];
   abilities: AbilityDTO[];
-  moves: MoveDTO[];
   types: string[];
 };
 
