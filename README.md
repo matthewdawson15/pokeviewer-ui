@@ -1,6 +1,6 @@
 # PokéViewer UI
 
-React, TypeScript and SCSS app to retrieve and visualise Generation 1 Pokémon info from the PokéAPI (https://pokeapi.co/).
+Demo React, TypeScript and SCSS app to retrieve and visualise Generation 1 Pokémon info from the PokéAPI (https://pokeapi.co/).
 
 PokéViewer logo was generated using www.textstudio.com
 
