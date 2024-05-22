@@ -1,14 +1,15 @@
-import React, { ReactElement, useEffect, useState } from "react";
-import { getPokeTileData } from "../../helpers/api";
+import React, { ChangeEvent, ReactElement, useEffect, useState } from "react";
 import {
   NamedAPIResource,
   PokeAPIParams,
   PokeApiRes,
 } from "../../types/pokemonApi";
+import { getPokeTileData } from "../../helpers/api";
+import { generatePokeName } from "../../helpers/string";
 import { PokeTileDTO } from "../../types/pokemonDTO";
 import LoadingSpinner from "../../blocks/LoadingSpinner/LoadingSpinner";
 import NoContent from "../../blocks/NoContent/NoContent";
-import { generatePokeName } from "../../helpers/string";
+import SearchBox from "../../blocks/Search/Search";
 import PokeList from "../PokeList/PokeList";
 
 /**
@@ -21,6 +22,8 @@ function PokeViewerPage(): ReactElement {
 
   const [pokeTileDataLoading, setPokeTileDataLoading] =
     useState<boolean>(false);
+
+  const [search, setSearch] = useState<string>("");
 
   /**
    * Function to fetch the Generation 1 Pokemon, parse the response's NamedAPIResource
@@ -78,7 +81,17 @@ function PokeViewerPage(): ReactElement {
   ) : pokeTileData?.length > 0 ? (
     <>
       <h1>Generation 1 Pokémon</h1>
-      <PokeList pokeTileData={pokeTileData} />
+      <SearchBox
+        id="poke-search"
+        search={search}
+        handleSearch={(e: ChangeEvent<HTMLInputElement>): void =>
+          setSearch(e.target.value.trim())
+        }
+        cancelSearch={(): void => setSearch("")}
+        placeholder="Search by name or Pokédex number..."
+        icon
+      />
+      <PokeList pokeTileData={pokeTileData} search={search} />
     </>
   ) : (
     <NoContent />

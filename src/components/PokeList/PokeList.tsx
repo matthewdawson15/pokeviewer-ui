@@ -8,6 +8,7 @@ import "./PokeList.scss";
 
 type PokeListProps = {
   pokeTileData: PokeTileDTO[];
+  search: string;
 };
 
 /**
@@ -15,7 +16,7 @@ type PokeListProps = {
  *
  * @returns PokeList react element
  */
-function PokeList({ pokeTileData }: PokeListProps): ReactElement {
+function PokeList({ pokeTileData, search }: PokeListProps): ReactElement {
   const [selectedPokemonID, setSelectedPokemonID] = useState<number | null>(
     null
   );
@@ -34,7 +35,14 @@ function PokeList({ pokeTileData }: PokeListProps): ReactElement {
   function filterPokiTileData(pokeTileData: PokeTileDTO[]): PokeTileDTO[] {
     /* if the number of pages required is greater than one, extract the items
      to be displayed for that page ready to be displayed */
-    if (currentPage && pageNumbers > 1) {
+    if (search) {
+      const filteredPokiTileData: PokeTileDTO[] = pokeTileData.filter(
+        (pokeTileDTO: PokeTileDTO): boolean =>
+          pokeTileDTO.name.toLowerCase().startsWith(search.toLowerCase()) ||
+          pokeTileDTO.id.toString() === search.replace("#", "")
+      );
+      return filteredPokiTileData;
+    } else if (currentPage && pageNumbers > 1) {
       const pageMax = currentPage * pageSize;
       const pageMin = pageMax - pageSize;
 
@@ -67,13 +75,15 @@ function PokeList({ pokeTileData }: PokeListProps): ReactElement {
           )
         )}
       </div>
-      <Pagination
-        pageSize={pageSize}
-        currentPage={currentPage}
-        pageNumbers={pageNumbers}
-        setPageSize={setPageSize}
-        setCurrentPage={setCurrentPage}
-      />
+      {!search && (
+        <Pagination
+          pageSize={pageSize}
+          currentPage={currentPage}
+          pageNumbers={pageNumbers}
+          setPageSize={setPageSize}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
       {selectedPokemonID !== null && (
         <Modal
           modalOpen={selectedPokemonID !== null}
