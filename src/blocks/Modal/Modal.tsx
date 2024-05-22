@@ -29,14 +29,6 @@ function Modal({ modalOpen, closeModal, children }: ModalProps): ReactElement {
   }
 
   /**
-   * Function to close the modal when an element has been clicked
-   */
-  function closeFromClick(): void {
-    restoreScroll();
-    closeModal();
-  }
-
-  /**
    * window.scrollY is used to prevent the page from scrolling when the modal
    * is visible
    *
@@ -53,14 +45,14 @@ function Modal({ modalOpen, closeModal, children }: ModalProps): ReactElement {
       restoreScroll();
     }
 
-    return () => restoreScroll();
+    return (): void => restoreScroll();
   }, [modalOpen]);
 
   return createPortal(
     modalOpen && (
       <div
         // close the modal when the modal background is clicked
-        onClick={closeFromClick}
+        onClick={closeModal}
         className={`modal-background ${!modalOpen ? "display-none" : ""}`}
       >
         <div
