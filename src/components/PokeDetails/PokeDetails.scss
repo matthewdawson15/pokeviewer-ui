@@ -2,7 +2,6 @@
 
 .poke-details {
   width: 80%;
-  padding-bottom: 3rem;
 
   &__play-button {
     border: 0;
@@ -36,7 +35,15 @@
     margin-bottom: 1rem;
   }
 
-  &__height {
-    margin-right: 1rem;
+  &__measurements {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  &:after {
+    content: "";
+    display: block;
+    height: 1rem;
+    width: 100%;
   }
 }

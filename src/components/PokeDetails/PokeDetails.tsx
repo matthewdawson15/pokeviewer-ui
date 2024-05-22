@@ -48,8 +48,8 @@ function PokeDetails({
         pokeDetails.name
       )} (#${pokeDetails.id})`}</h1>
 
-      <div>
-        <span className="poke-details__property-name poke-details__height">
+      <div className="poke-details__measurements">
+        <span className="poke-details__property-name">
           {`Height:  ${pokeDetails.height}`}
         </span>
         <span className="poke-details__property-name">
