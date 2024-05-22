@@ -77,7 +77,7 @@ function PokeViewerPage(): ReactElement {
   useEffect((): void => fetchPokemon(), []);
 
   return !pokeTileData || pokeTileDataLoading ? (
-    <LoadingSpinner text="Loading Pokemon..." />
+    <LoadingSpinner text="Loading Pokémon..." />
   ) : pokeTileData?.length > 0 ? (
     <>
       <h1>Generation 1 Pokémon</h1>
