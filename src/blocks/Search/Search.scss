@@ -1,0 +1,21 @@
+@import "src/variables.scss";
+
+.search {
+  text-align: center;
+
+  &__label {
+    margin: auto;
+  }
+
+  input {
+    margin: 0;
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: $md) {
+  .search input {
+    margin: 0;
+    width: 85%;
+  }
+}

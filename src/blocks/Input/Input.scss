@@ -1,0 +1,34 @@
+@import "src/variables.scss";
+
+.text-input-wrapper {
+  margin: 0.5rem;
+
+  &__text-input {
+    padding: 0.25rem 1.5rem 0.25rem 0.25rem;
+  }
+
+  &__input-icon {
+    all: unset;
+    color: $black;
+    position: relative;
+    margin-right: -1.5rem;
+    right: 1.5rem;
+    width: 1rem;
+    height: 1rem;
+  }
+
+  &__clear-icon {
+    cursor: pointer;
+    right: 1.15rem;
+
+    &:focus {
+      outline: none;
+      padding-bottom: 0;
+    }
+
+    &:focus-visible {
+      outline: 1px solid $primary;
+      padding-bottom: 0.5rem;
+    }
+  }
+}
