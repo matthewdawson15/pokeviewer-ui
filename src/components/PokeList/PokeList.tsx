@@ -57,10 +57,17 @@ function PokeList({ pokeTileData, search }: PokeListProps): ReactElement {
   }
 
   // recalculate the number of pages required for the data whenever pageSize is updated
-  useEffect(
-    (): void => setPageNumbers(Math.ceil(pokeTileData.length / pageSize)),
-    [pageSize]
-  );
+  useEffect((): void => {
+    const newPageNumbers: number = Math.ceil(pokeTileData.length / pageSize);
+    console.log("new pageNUmbers ", newPageNumbers);
+
+    // update current page if greater than new max page
+    if (currentPage > newPageNumbers) {
+      setCurrentPage(newPageNumbers);
+    }
+
+    setPageNumbers(newPageNumbers);
+  }, [pageSize]);
 
   return (
     <>
