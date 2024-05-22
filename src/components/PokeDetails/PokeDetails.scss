@@ -1,6 +1,9 @@
 @import "src/variables.scss";
 
 .poke-details {
+  width: 80%;
+  padding-bottom: 3rem;
+
   &__play-button {
     border: 0;
     border-radius: 15px;
@@ -24,6 +27,12 @@
   }
 
   &__property-name {
+    display: inline-block;
     font-weight: $font-medium;
+    margin-bottom: 1rem;
+  }
+
+  &__height {
+    margin-right: 1rem;
   }
 }

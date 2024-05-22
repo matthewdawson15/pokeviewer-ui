@@ -3,6 +3,7 @@ import Button from "../../blocks/Button/Button";
 import { generatePokeName } from "../../helpers/string";
 import { PokemonDTO } from "../../types/pokemonDTO";
 import "./PokeDetails.scss";
+import PokeCharacteristics from "../PokeCharacteristics/PokeCharacteristics";
 
 type PokeDetailsProps = {
   pokeDetails: PokemonDTO;
@@ -43,20 +44,20 @@ function PokeDetails({
           alt={`official artwork for ${pokeDetails.name}(#${pokeDetails.id})`}
         />
       </button>
-      <h1>{generatePokeName(pokeDetails.name)}</h1>
+      <h1>{`${generatePokeName(pokeDetails.name)} (#${pokeDetails.id})`}</h1>
 
-      <p>
-        <span className="poke-details__property-name">Pokédex Number: </span>
-        {pokeDetails.id}
-      </p>
-      <p>
-        <span className="poke-details__property-name">Height: </span>
-        {pokeDetails.height}
-      </p>
-      <p>
-        <span className="poke-details__property-name">Weight: </span>
-        {pokeDetails.weight}
-      </p>
+      <div>
+        <span className="poke-details__property-name poke-details__height">
+          {`Height:  ${pokeDetails.height}`}
+        </span>
+        <span className="poke-details__property-name">
+          {`Weight:  ${pokeDetails.weight}`}
+        </span>
+      </div>
+
+      {Object.keys(pokeDetails.characteristics).length > 0 && (
+        <PokeCharacteristics characteristics={pokeDetails.characteristics} />
+      )}
 
       <Button onClick={setSelectedPokemon}>
         <span>Close</span>
