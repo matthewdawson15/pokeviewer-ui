@@ -84,7 +84,7 @@ function PokeDetailsWrapper({
   useEffect((): void => fetchPokeDetails(), []);
 
   return !pokeDetails || pokeDetailsLoading ? (
-    <LoadingSpinner text="Loading Pokemon Details..." />
+    <LoadingSpinner text="Loading Pokémon Details..." />
   ) : pokeDetails ? (
     <PokeDetails
       pokeDetails={pokeDetails}
