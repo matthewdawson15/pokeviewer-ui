@@ -44,7 +44,9 @@ function PokeDetails({
           alt={`official artwork for ${pokeDetails.name}(#${pokeDetails.id})`}
         />
       </button>
-      <h1>{`${generatePokeName(pokeDetails.name)} (#${pokeDetails.id})`}</h1>
+      <h1 className="poke-details__title">{`${generatePokeName(
+        pokeDetails.name
+      )} (#${pokeDetails.id})`}</h1>
 
       <div>
         <span className="poke-details__property-name poke-details__height">

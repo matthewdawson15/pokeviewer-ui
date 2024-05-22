@@ -16,7 +16,7 @@ function PokeCharacteristicWrapper({
 
   return (
     <div className="characteristic">
-      <div>
+      <div className="characteristic__title-wrapper">
         <h2 className="characteristic__title">{characteristicName}</h2>
         <button
           className="characteristic__dropdown-button"
@@ -29,7 +29,7 @@ function PokeCharacteristicWrapper({
           />
         </button>
       </div>
-      {expanded && children}
+      {expanded && <ul className="characteristic__list">{children}</ul>}
     </div>
   );
 }

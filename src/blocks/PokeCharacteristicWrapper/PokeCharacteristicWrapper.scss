@@ -1,9 +1,20 @@
+@import "src/variables.scss";
+
 .characteristic {
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border: 1px solid $off-white;
+  box-shadow: 0 1px 4px 2px $grey-shadow;
   margin-bottom: 1rem;
+
+  &__title-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
 
   &__title {
     display: inline-block;
-    margin-bottom: 1rem;
+    margin: 0;
     font-size: 1.2rem;
   }
 
@@ -13,6 +24,12 @@
     margin-left: 0.25rem;
     &__icon {
       margin: 0;
+      color: $grey;
     }
+  }
+
+  &__list {
+    text-align: left;
+    padding-left: 1.5rem;
   }
 }
