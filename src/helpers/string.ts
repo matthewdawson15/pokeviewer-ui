@@ -1,4 +1,21 @@
 /**
+ * Helper function to formate a string into a  more
+ * user friendly format by replacing dashes with spaces
+ * and capitalising each word
+ *
+ * @param string the string to format
+ * @returns the formatted string
+ */
+export function formatString(string: string): string {
+  return string
+    .replace(/-/g, " ")
+    .toLowerCase()
+    .split(" ")
+    .map((word) => word[0].toUpperCase() + word.substring(1))
+    .join(" ");
+}
+
+/**
  * Helper function to capitalise a string
  *
  * @param string the string to capitalise

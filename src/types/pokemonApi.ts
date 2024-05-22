@@ -53,7 +53,7 @@ export type Cries = {
   legacy: string;
 };
 
-type Stat = {
+export type Stat = {
   base_stat: number;
   effort: number;
   stat: NamedAPIResource;
@@ -90,8 +90,9 @@ export type PokeApiRes = {
 };
 
 /**
- * Properties not accessed by the PokeViewer are not fully typed for this demo,
- * but would be fully typed in a production version without time constraints
+ * held_items and game_indicies are not accessed by the PokeViewer are not
+ * fully typed for this demo, but would be fully typed in a production
+ * version without time constraints
  */
 export type Pokemon = {
   abilities: Ability[];
@@ -118,4 +119,3 @@ export type PokeAPIParams = {
   offset: number;
   limit: number;
 };
-
