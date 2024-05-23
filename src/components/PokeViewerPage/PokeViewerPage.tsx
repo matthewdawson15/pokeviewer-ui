@@ -35,21 +35,26 @@ function PokeViewerPage(): ReactElement {
     setPokeTileDataLoading(true);
 
     getPokeTileData(queryParams).then((res: PokeApiRes) => {
-      const pokeTiles: PokeTileDTO[] = res.results.map(
-        (pokeDetails: NamedAPIResource) => {
-          const pokeID: number = parsePokeID(pokeDetails.url);
+      if (res) {
+        const pokeTiles: PokeTileDTO[] = res.results.map(
+          (pokeDetails: NamedAPIResource) => {
+            const pokeID: number = parsePokeID(pokeDetails.url);
 
-          const pokeTileDTO: PokeTileDTO = {
-            name: generatePokeName(pokeDetails.name),
-            id: pokeID,
-            url: pokeDetails.url,
-          };
+            const pokeTileDTO: PokeTileDTO = {
+              name: generatePokeName(pokeDetails.name),
+              id: pokeID,
+              url: pokeDetails.url,
+            };
 
-          return pokeTileDTO;
-        }
-      );
+            return pokeTileDTO;
+          }
+        );
 
-      setPokeTileData(pokeTiles);
+        setPokeTileData(pokeTiles);
+      } else {
+        setPokeTileData([]);
+      }
+
       setPokeTileDataLoading(false);
     });
   }
