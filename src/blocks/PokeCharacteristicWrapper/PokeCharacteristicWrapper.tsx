@@ -32,7 +32,7 @@ function PokeCharacteristicWrapper({
           <Icon
             className="characteristic__dropdown-button__title-wrapper__icon"
             icon={expanded ? faCaretUp : faCaretDown}
-          />{" "}
+          />
         </div>
       </button>
 
