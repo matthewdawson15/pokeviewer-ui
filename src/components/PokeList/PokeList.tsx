@@ -26,17 +26,17 @@ function PokeList({ pokeTileData, search }: PokeListProps): ReactElement {
   const [pageNumbers, setPageNumbers] = useState<number>(1);
 
   /**
-   * Function to filter the pokiTileData DTO array for
+   * Function to filter the pokeTileData DTO array for
    * pagination.
    *
    * @param pokeTileData the pokemon tile DTO to filter
    * @returns the filtered tile DTO
    */
-  function filterPokiTileData(pokeTileData: PokeTileDTO[]): PokeTileDTO[] {
+  function filterPokeTileData(pokeTileData: PokeTileDTO[]): PokeTileDTO[] {
     /* if the number of pages required is greater than one, extract the items
      to be displayed for that page ready to be displayed */
     if (search) {
-      const filteredPokiTileData: PokeTileDTO[] = pokeTileData.filter(
+      const filteredPokeTileData: PokeTileDTO[] = pokeTileData.filter(
         (pokeTileDTO: PokeTileDTO): boolean => {
           const idSearchString = search.startsWith("#")
             ? search.slice(1)
@@ -48,16 +48,16 @@ function PokeList({ pokeTileData, search }: PokeListProps): ReactElement {
           );
         }
       );
-      return filteredPokiTileData;
+      return filteredPokeTileData;
     } else if (currentPage && pageNumbers > 1) {
       const pageMax = currentPage * pageSize;
       const pageMin = pageMax - pageSize;
 
-      const filteredPokiTileData: PokeTileDTO[] = pokeTileData.slice(
+      const filteredPokeTileData: PokeTileDTO[] = pokeTileData.slice(
         pageMin,
         pageMax
       );
-      return filteredPokiTileData;
+      return filteredPokeTileData;
     } else {
       return pokeTileData;
     }
@@ -78,7 +78,7 @@ function PokeList({ pokeTileData, search }: PokeListProps): ReactElement {
   return (
     <>
       <div className="poke-list">
-        {filterPokiTileData(pokeTileData).map(
+        {filterPokeTileData(pokeTileData).map(
           (pokeTileDTO: PokeTileDTO): ReactElement => (
             <PokeTile
               key={pokeTileDTO.id}
