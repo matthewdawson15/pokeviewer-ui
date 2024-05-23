@@ -133,7 +133,7 @@ describe("PokeViewerPage Component", () => {
       await Promise.resolve();
     });
 
-    // Type 'bulba' into the search box
+    // Type 'char' into the search box
     const searchInput = screen.getByPlaceholderText(
       /search by name or pokédex number.../i
     ) as HTMLInputElement;
