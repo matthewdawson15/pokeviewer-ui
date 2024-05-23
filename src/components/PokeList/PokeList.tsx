@@ -37,9 +37,16 @@ function PokeList({ pokeTileData, search }: PokeListProps): ReactElement {
      to be displayed for that page ready to be displayed */
     if (search) {
       const filteredPokiTileData: PokeTileDTO[] = pokeTileData.filter(
-        (pokeTileDTO: PokeTileDTO): boolean =>
-          pokeTileDTO.name.toLowerCase().startsWith(search.toLowerCase()) ||
-          pokeTileDTO.id.toString() === search.replace("#", "")
+        (pokeTileDTO: PokeTileDTO): boolean => {
+          const idSearchString = search.startsWith("#")
+            ? search.slice(1)
+            : search;
+
+          return (
+            pokeTileDTO.name.toLowerCase().startsWith(search.toLowerCase()) ||
+            pokeTileDTO.id.toString().startsWith(idSearchString)
+          );
+        }
       );
       return filteredPokiTileData;
     } else if (currentPage && pageNumbers > 1) {
