@@ -20,19 +20,22 @@ function PokeCharacteristicWrapper({
 
   return (
     <div className="characteristic">
-      <div className="characteristic__title-wrapper">
-        <h2 className="characteristic__title">{characteristicName}</h2>
-        <button
-          className="characteristic__dropdown-button"
-          type="button"
-          onClick={() => setExpanded(!expanded)}
-        >
+      <button
+        className="characteristic__dropdown-button"
+        type="button"
+        onClick={() => setExpanded(!expanded)}
+      >
+        <div className="characteristic__dropdown-button__title-wrapper">
+          <h2 className="characteristic__dropdown-button__title-wrapper__title">
+            {characteristicName}
+          </h2>
           <Icon
-            className="characteristic__dropdown-button__icon"
+            className="characteristic__dropdown-button__title-wrapper__icon"
             icon={expanded ? faCaretUp : faCaretDown}
-          />
-        </button>
-      </div>
+          />{" "}
+        </div>
+      </button>
+
       {expanded && <ul className="characteristic__list">{children}</ul>}
     </div>
   );
