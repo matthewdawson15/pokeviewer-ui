@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
+import { Link } from "react-router-dom";
 import { faLongArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import Button from "../../blocks/Button/Button";
 import Icon from "../../blocks/Icon/Icon";
 
 /**
@@ -11,12 +11,14 @@ function NotFoundPage(): ReactElement {
     <div className="centred">
       <h1>Error 404 - Page not found</h1>
       <p>Sorry, this page URL doesn't exist.</p>
-      <Button onClick={(): void => location.assign("/")}>
-        <>
-          <Icon icon={faLongArrowLeft} />
-          <span>Return to PokéViewer</span>
-        </>
-      </Button>
+      <div className="button-wrapper">
+        <Link className="button-wrapper__button" to="/">
+          <>
+            <Icon icon={faLongArrowLeft} />
+            <span>Return to PokéViewer</span>
+          </>
+        </Link>
+      </div>
     </div>
   );
 }

@@ -12,6 +12,12 @@ h1,
   text-align: center;
 }
 
+a,
+a:hover,
+a:visited {
+  text-decoration: none;
+}
+
 @media (max-width: $sm) {
   h1 {
     font-size: 1.5rem;
